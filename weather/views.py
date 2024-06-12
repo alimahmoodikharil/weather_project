@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from urllib import request
 
-# Create your views here.
+
+def weather_index(request):
+    return render(request, 'weather/weather_index', data)
