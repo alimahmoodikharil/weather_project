@@ -12,20 +12,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from environs import Env
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = Env()
+env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#_^1k$txpmwd9!-jqn0fnd43gyrz9mxohq6%9-$zrn$w2w-w*0'
+SECRET_KEY = env('PROJECT_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('PROJECT_DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -83,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'weatherdb',
-        'PASS': '642178953',
+        'PASSWORD': '642178953',
         'USER': 'root',
         'HOST': 'localhost',
     }
@@ -125,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-Media_URL = 'images/'
+MEDIA_URL = 'images/'
 
 
 # Default primary key field type
